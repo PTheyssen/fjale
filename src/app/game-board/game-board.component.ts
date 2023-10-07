@@ -1,21 +1,41 @@
-import { Component } from '@angular/core';
 
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-game-board',
   templateUrl: './game-board.component.html',
-  styleUrls: ['./game-board.component.css']
+  styleUrls: ['./game-board.component.css'],
 })
 export class GameBoardComponent {
-  lastClickedKeys: string[] = ['', '', '', '', ''];
-  displayedKeys: string[] = [];
+  currentLetter: number = 0;
+  currentWord: number = 0;
+  words: Array<Array<string>> = [
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+  ];
 
+  // gets button click type
+  // - updates game board
   onKeyClick(key: string) {
-    console.log(key);
-    if (this.lastClickedKeys.length >= 5) {
-      this.lastClickedKeys.shift(); // Remove the oldest key if there are 5 keys already
+    // this word is locked
+    if (this.currentLetter >= 5) {
+      if (this.currentWord >= 4) {
+        this.finishGame();
+        return;
+      }
+      this.currentWord++;
+      this.currentLetter = 0;
     }
-    this.lastClickedKeys.push(key);
-    this.displayedKeys = this.lastClickedKeys;
+    this.words[this.currentWord][this.currentLetter] = key;
+    this.currentLetter++;
+    // console.log(this.words);
+    // console.log(this.currentLetter);
+  }
+
+  finishGame() {
+    console.log("Game is finished!")
   }
 }

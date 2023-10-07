@@ -1,9 +1,21 @@
-.last-keys {
-  display: flex;
-  gap: 15px;
+* {
+    font-family: Georgia, sans-serif !important;
+}
+
+#page-wrap {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  grid-auto-rows: minmax(80px, auto);
 }
 
 .last-key {
+
   width: 60px;
   height: 60px;
   display: flex;
@@ -13,10 +25,56 @@
   font-size: 18px;
 }
 
+.word-1 {
+  margin: auto;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.word-2 {
+  margin: auto;
+  grid-column: 1 / 3;
+  grid-row: 2;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.word-3 {
+  margin: auto;
+  grid-column: 1 / 3;
+  grid-row: 3;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.word-4 {
+  margin: auto;
+  grid-column: 1 / 3;
+  grid-row: 4;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.word-5 {
+  margin: auto;
+  grid-column: 1 / 3;
+  grid-row: 5;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
 .keyboard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+  grid-template-columns: repeat(10, 0fr);
+  gap: 8px;
 }
 
 button {
@@ -24,8 +82,9 @@ button {
   height: 50px;
   padding: 10px;
   font-size: 24px;
+  border-radius: 8px;
   background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   cursor: pointer;
 }
 

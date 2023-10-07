@@ -1,18 +1,68 @@
-<h1>Hello!</h1>
+<div id="page-wrap">
+  <h1>Përshëndetje!</h1>
+  <h2>Le të luajmë fjalë!</h2>
 
-<div class="last-keys">
-  <div *ngFor="let key of displayedKeys" class="last-key">{{ key }}</div>
+  <div class="board">
+    <div class="wrapper">
+      <div class="word-1">
+        <div *ngFor="let key of words[0]" class="last-key">{{ key }}</div>
+      </div>
+
+      <div class="word-2">
+        <div *ngFor="let key of words[1]" class="last-key">{{ key }}</div>
+      </div>
+
+      <div class="word-3">
+        <div *ngFor="let key of words[2]" class="last-key">{{ key }}</div>
+      </div>
+
+      <div class="word-4">
+        <div *ngFor="let key of words[3]" class="last-key">{{ key }}</div>
+      </div>
+
+      <div class="word-5">
+        <div *ngFor="let key of words[4]" class="last-key">{{ key }}</div>
+      </div>
+    </div>
+    <br />
+    <div class="keyboard">
+      <button (click)="onKeyClick('A')">A</button>
+      <button (click)="onKeyClick('B')">B</button>
+      <button (click)="onKeyClick('C')">C</button>
+      <button (click)="onKeyClick('Ç')">Ç</button>
+      <button (click)="onKeyClick('D')">D</button>
+      <button (click)="onKeyClick('Dh')">Dh</button>
+      <button (click)="onKeyClick('E')">E</button>
+      <button (click)="onKeyClick('Ë')">Ë</button>
+      <button (click)="onKeyClick('F')">F</button>
+      <button (click)="onKeyClick('G')">G</button>
+      <button (click)="onKeyClick('Gj')">Gj</button>
+      <button (click)="onKeyClick('H')">H</button>
+      <button (click)="onKeyClick('I')">I</button>
+      <button (click)="onKeyClick('J')">J</button>
+      <button (click)="onKeyClick('K')">K</button>
+      <button (click)="onKeyClick('L')">L</button>
+      <button (click)="onKeyClick('Ll')">Ll</button>
+      <button (click)="onKeyClick('M')">M</button>
+      <button (click)="onKeyClick('N')">N</button>
+      <button (click)="onKeyClick('Nj')">Nj</button>
+      <button (click)="onKeyClick('O')">O</button>
+      <button (click)="onKeyClick('P')">P</button>
+      <button (click)="onKeyClick('Q')">Q</button>
+      <button (click)="onKeyClick('R')">R</button>
+      <button (click)="onKeyClick('Rr')">Rr</button>
+      <button (click)="onKeyClick('S')">S</button>
+      <button (click)="onKeyClick('Sh')">Sh</button>
+      <button (click)="onKeyClick('T')">T</button>
+      <button (click)="onKeyClick('Th')">T</button>
+      <button (click)="onKeyClick('U')">U</button>
+      <button (click)="onKeyClick('V')">V</button>
+      <button (click)="onKeyClick('X')">X</button>
+      <button (click)="onKeyClick('Xh')">Xh</button>
+      <button (click)="onKeyClick('Y')">Y</button>
+      <button (click)="onKeyClick('Z')">Z</button>
+      <button (click)="onKeyClick('Zh')">Zh</button>
+      <!-- Add more buttons as needed -->
+    </div>
+  </div>
 </div>
-
-<br>
-<br>
-
-<div class="keyboard">
-  <button (click)="onKeyClick('1')">1</button>
-  <button (click)="onKeyClick('2')">2</button>
-  <button (click)="onKeyClick('3')">3</button>
-  <!-- Add more buttons as needed -->
-</div>
-
-
-
