@@ -1,0 +1,18 @@
+<h1>Hello!</h1>
+
+<div class="last-keys">
+  <div *ngFor="let key of displayedKeys" class="last-key">{{ key }}</div>
+</div>
+
+<br>
+<br>
+
+<div class="keyboard">
+  <button (click)="onKeyClick('1')">1</button>
+  <button (click)="onKeyClick('2')">2</button>
+  <button (click)="onKeyClick('3')">3</button>
+  <!-- Add more buttons as needed -->
+</div>
+
+
+
