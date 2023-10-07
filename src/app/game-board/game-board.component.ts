@@ -18,6 +18,7 @@ export class GameBoardComponent {
   ];
 
   // gets button click type
+
   // - updates game board
   onKeyClick(key: string) {
     // this word is locked
@@ -33,6 +34,10 @@ export class GameBoardComponent {
     this.currentLetter++;
     // console.log(this.words);
     // console.log(this.currentLetter);
+  }
+
+  deletePrevious() {
+    
   }
 
   finishGame() {
