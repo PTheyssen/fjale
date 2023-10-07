@@ -37,7 +37,12 @@ export class GameBoardComponent {
   }
 
   deletePrevious() {
-    
+    console.log(this.currentLetter);
+    if (this.currentLetter == 5 || this.currentLetter == 0) {
+      return;
+    }
+    this.words[this.currentWord][this.currentLetter-1] = '';
+    this.currentLetter--;
   }
 
   finishGame() {
