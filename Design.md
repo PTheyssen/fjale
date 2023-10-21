@@ -1,14 +1,10 @@
 # Design Document for Fjale
 
-Goal:
+## Principles
 
 - pure frontend application based on angular
 - replicate wordle game
-- basic html components (no heavy weight libraries)
-
-## Architecture
-
-- single page / component
+- basic html + css
 
 ## Functionality
 
@@ -16,7 +12,4 @@ Goal:
 - each try (word) reveals for each letter if:
   - it is inside the correct word at the right posiion (green)
   - if it is inside the correct word at a wrong position (yellow)
-  
-- random word will be choosen from a list of word (will get them from dictionary (dict.cc) / chatGPT
-
-
+- random word will be choosen from a list of word sourced from dict.cc
