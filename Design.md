@@ -6,8 +6,6 @@ Goal:
 - replicate wordle game
 - basic html components (no heavy weight libraries)
 
-
-
 ## Architecture
 
 - single page / component

@@ -4,23 +4,23 @@
   <div class="board">
     <div class="wrapper">
       <div class="word-1">
-        <div *ngFor="let key of words[0]" class="last-key">{{ key }}</div>
+        <div *ngFor="let key of gameBoard[0]" class="last-key">{{ key }}</div>
       </div>
 
       <div class="word-2">
-        <div *ngFor="let key of words[1]" class="last-key">{{ key }}</div>
+        <div *ngFor="let key of gameBoard[1]" class="last-key">{{ key }}</div>
       </div>
 
       <div class="word-3">
-        <div *ngFor="let key of words[2]" class="last-key">{{ key }}</div>
+        <div *ngFor="let key of gameBoard[2]" class="last-key">{{ key }}</div>
       </div>
 
       <div class="word-4">
-        <div *ngFor="let key of words[3]" class="last-key">{{ key }}</div>
+        <div *ngFor="let key of gameBoard[3]" class="last-key">{{ key }}</div>
       </div>
 
       <div class="word-5">
-        <div *ngFor="let key of words[4]" class="last-key">{{ key }}</div>
+        <div *ngFor="let key of gameBoard[4]" class="last-key">{{ key }}</div>
       </div>
     </div>
     <br />
@@ -72,7 +72,7 @@
         <button (click)="onKeyClick('S')">S</button>
         <button (click)="onKeyClick('Sh')">Sh</button>
         <button (click)="onKeyClick('T')">T</button>
-        <button (click)="onKeyClick('Th')">T</button>
+        <button (click)="onKeyClick('Th')">Th</button>
         <button (click)="onKeyClick('U')">U</button>
         <button (click)="onKeyClick('V')">V</button>
         <button (click)="onKeyClick('X')">X</button>
