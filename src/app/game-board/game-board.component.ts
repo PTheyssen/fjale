@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+enum LetterOutcome {
+  wrong,
+  wrongPosition,
+  correct
+}
+
 @Component({
   selector: 'app-game-board',
   templateUrl: './game-board.component.html',
@@ -34,10 +40,9 @@ export class GameBoardComponent {
       this.currentLetter++;
       if (this.currentLetter >= 5) {
         console.log();
-        let submittedWord: string = this.gameBoard[this.currentWord]
-          .join('')
-          .toLowerCase();
-        this.checkWord(this.solutionWord, submittedWord);
+        let submittedWord: string[] = this.gameBoard[this.currentWord]
+        let lowerCaseSubmittedWord = submittedWord.map((x) => x.toLowerCase());
+        this.checkWord(this.solutionWord, lowerCaseSubmittedWord);
         if (this.currentWord >= 4) {
           this.finishGame();
           return;
@@ -48,8 +53,9 @@ export class GameBoardComponent {
     }
   }
 
-  checkWord(solutionWord: string, word: string) {
+  checkWord(solutionWord: string, word: Array<string>) {
     console.log(word);
+    console.log(LetterOutcome.correct)
   }
 
   deletePrevious() {
@@ -63,5 +69,21 @@ export class GameBoardComponent {
   finishGame() {
     this.gameFinished = true;
     console.log('Game is finished!');
+  }
+
+  parseSolutionWord(word: string): Array<string> {
+    let result: string[] = [];
+    const doubleLetters: string[] = ["dh", "gj", "ll", "rr", "sh", "th", "zh", "xh"];
+    const chars: string[] = word.split("");
+    for (let i = 0; i < chars.length ; i++) {
+      let item = chars[i];
+      // if (index < (chars.length - 1)) {
+      //   if (value + chars[index+1]) {
+
+      //   }
+      // }
+    }
+    // TODO
+    return [];
   }
 }
