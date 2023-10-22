@@ -18,6 +18,22 @@ def write_new_file(words: List[str]):
             f.write(f"{w}\n")
 
 
+def length_albanian_word(w: str) -> int:
+    transformed_word = (
+        w.lower()
+        .replace("dh", "_")
+        .replace("gj", "_")
+        .replace("ll", "_")
+        .replace("nj", "_")
+        .replace("rr", "_")
+        .replace("sh", "_")
+        .replace("th", "_")
+        .replace("xh", "_")
+        .replace("zh", "_")
+    )
+    return len(transformed_word)
+
+
 def extract_albanian_words_length_5(file_path: str) -> None:
     with open(file_path) as f:
         lines = [line for line in f]
@@ -30,7 +46,7 @@ def extract_albanian_words_length_5(file_path: str) -> None:
         albanian_words_length_5 = [
             w.lower()
             for w in albanian_words
-            if len(w) == 5 and not w.startswith("(") and not "!" in w and "." not in w
+            if length_albanian_word(w) == 5 and not w.startswith("(") and not "!" in w and "." not in w
         ]
         unique_words = list(set(albanian_words_length_5))
         write_new_file(unique_words)

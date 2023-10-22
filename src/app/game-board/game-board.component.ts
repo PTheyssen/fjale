@@ -14,7 +14,6 @@ export class GameBoardComponent {
   gameBoard: Array<Array<string>> = [
     ['', '', '', '', ''],
     ['', '', '', '', ''],
-
     ['', '', '', '', ''],
     ['', '', '', '', ''],
     ['', '', '', '', ''],
@@ -26,6 +25,7 @@ export class GameBoardComponent {
       .then((text) => (this.wordList = text.split('\n')));
     this.solutionWord =
       this.wordList[Math.floor(Math.random() * this.wordList.length)];
+    console.log('Solution word: ' + this.solutionWord);
   }
 
   onKeyClick(key: string) {
