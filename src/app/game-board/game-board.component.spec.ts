@@ -18,4 +18,8 @@ describe('GameBoardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Parse solution word correctly', () => {
+    expect(component.parseSolutionWord("xhejms")).toEqual(["xh", "e", "j", "m", "s"]);
+  })
 });

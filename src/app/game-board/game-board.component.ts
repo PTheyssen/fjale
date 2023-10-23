@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 enum LetterOutcome {
+  bottom,
   wrong,
   wrongPosition,
-  correct
+  correct,
 }
 
 @Component({
@@ -12,6 +13,7 @@ enum LetterOutcome {
   styleUrls: ['./game-board.component.css'],
 })
 export class GameBoardComponent {
+  gameIsSolved: boolean = false;
   gameFinished: boolean = false;
   solutionWord: string = '';
   wordList: Array<string> = [];
@@ -24,6 +26,43 @@ export class GameBoardComponent {
     ['', '', '', '', ''],
     ['', '', '', '', ''],
   ];
+  outcomeBoard: Array<Array<LetterOutcome>> = [
+    [
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+    ],
+    [
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+    ],
+    [
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+    ],
+    [
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+    ],
+    [
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+      LetterOutcome.bottom,
+    ],
+  ];
 
   async ngOnInit() {
     await fetch('assets/fjale.txt')
@@ -32,6 +71,9 @@ export class GameBoardComponent {
     this.solutionWord =
       this.wordList[Math.floor(Math.random() * this.wordList.length)];
     console.log('Solution word: ' + this.solutionWord);
+    console.log(
+      'Parsed sol word: ' + this.parseSolutionWord(this.solutionWord)
+    );
   }
 
   onKeyClick(key: string) {
@@ -40,22 +82,53 @@ export class GameBoardComponent {
       this.currentLetter++;
       if (this.currentLetter >= 5) {
         console.log();
-        let submittedWord: string[] = this.gameBoard[this.currentWord]
+        let submittedWord: string[] = this.gameBoard[this.currentWord];
         let lowerCaseSubmittedWord = submittedWord.map((x) => x.toLowerCase());
-        this.checkWord(this.solutionWord, lowerCaseSubmittedWord);
+        let wordOutcome = this.checkWord(
+          this.solutionWord,
+          lowerCaseSubmittedWord
+        );
+        this.outcomeBoard[this.currentWord] = wordOutcome;
+        if (this.isOutcomeCorrect(wordOutcome)) {
+          this.gameIsSolved = true;
+          this.gameFinished = true;
+          return;
+        }
         if (this.currentWord >= 4) {
-          this.finishGame();
+          this.gameFinished = true;
           return;
         }
         this.currentWord++;
         this.currentLetter = 0;
       }
+    } else {
+      this.finishGame();
     }
   }
 
   checkWord(solutionWord: string, word: Array<string>) {
-    console.log(word);
-    console.log(LetterOutcome.correct)
+    let parsedSolWord: string[] = this.parseSolutionWord(solutionWord);
+    let outcome: LetterOutcome[] = [];
+    for (let i = 0; i < 5; i++) {
+      if (word[i] == parsedSolWord[i]) {
+        outcome.push(LetterOutcome.correct);
+      } else if (parsedSolWord.includes(word[i])) {
+        outcome.push(LetterOutcome.wrongPosition);
+      } else {
+        outcome.push(LetterOutcome.wrong);
+      }
+    }
+    return outcome;
+  }
+
+  isOutcomeCorrect(outcome: LetterOutcome[]): boolean {
+    let isCorrect = true;
+    outcome.forEach((element) => {
+      if (element != LetterOutcome.correct) {
+        isCorrect = false;
+      }
+    });
+    return isCorrect;
   }
 
   deletePrevious() {
@@ -68,22 +141,50 @@ export class GameBoardComponent {
 
   finishGame() {
     this.gameFinished = true;
-    console.log('Game is finished!');
+    if (this.gameIsSolved) {
+      alert("You won! :)")
+    }
+    alert("You lost! :(");
   }
 
   parseSolutionWord(word: string): Array<string> {
     let result: string[] = [];
-    const doubleLetters: string[] = ["dh", "gj", "ll", "rr", "sh", "th", "zh", "xh"];
-    const chars: string[] = word.split("");
-    for (let i = 0; i < chars.length ; i++) {
+    const doubleLetters: string[] = [
+      'dh',
+      'gj',
+      'll',
+      'rr',
+      'sh',
+      'th',
+      'zh',
+      'xh',
+    ];
+    const chars: string[] = word.split('');
+    for (let i = 0; i < chars.length; i++) {
       let item = chars[i];
-      // if (index < (chars.length - 1)) {
-      //   if (value + chars[index+1]) {
-
-      //   }
-      // }
+      if (i < chars.length - 1) {
+        if (doubleLetters.includes(chars[i] + chars[i + 1])) {
+          result.push(chars[i] + chars[i + 1]);
+          i++;
+          continue;
+        }
+      }
+      result.push(chars[i]);
     }
     // TODO
-    return [];
+    return result;
+  }
+
+  getOutcomeColor(letterOutcome: LetterOutcome): string {
+    switch (letterOutcome) {
+      case LetterOutcome.bottom:
+        return 'white';
+      case LetterOutcome.correct:
+        return 'green';
+      case LetterOutcome.wrongPosition:
+        return 'yellow';
+      case LetterOutcome.wrong:
+        return 'grey';
+    }
   }
 }
