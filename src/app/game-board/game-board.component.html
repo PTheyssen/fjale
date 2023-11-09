@@ -5,12 +5,9 @@
     <div class="wrapper">
       <div class="word-1">
         <div *ngFor="let key of gameBoard[0]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[0][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -18,12 +15,9 @@
 
       <div class="word-2">
         <div *ngFor="let key of gameBoard[1]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[1][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -31,12 +25,9 @@
 
       <div class="word-3">
         <div *ngFor="let key of gameBoard[2]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[2][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -44,12 +35,9 @@
 
       <div class="word-4">
         <div *ngFor="let key of gameBoard[3]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[3][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -57,12 +45,9 @@
 
       <div class="word-5">
         <div *ngFor="let key of gameBoard[4]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[4][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -70,23 +55,8 @@
     </div>
     <br />
 
-    <div class="keyboard-warpper">
-      <button
-        style="
-          float: right;
-          width: 150px;
-          height: 50px;
-          padding: 10px;
-          font-size: 24px;
-          border-radius: 8px;
-          background-color: #f0f0f0;
-          border: 2px solid #ccc;
-          cursor: pointer;
-        "
-        (click)="deletePrevious()"
-      >
-        ⌫
-      </button>
+    <div class="keyboard-wrapper">
+
       <div class="keyboard">
         <button (click)="onKeyClick('A')">A</button>
         <button (click)="onKeyClick('B')">B</button>
@@ -126,6 +96,15 @@
         <button (click)="onKeyClick('ZH')">ZH</button>
         <!-- Add more buttons as needed -->
       </div>
+      <div class="delete-button">
+        <button (click)="deletePrevious()">
+          ⌫
+        </button>
+      </div>
     </div>
+
+  </div>
+  <div *ngIf="gameFinished">
+    <button class="restart-button" (click)="reset()">Restart Game</button>
   </div>
 </div>

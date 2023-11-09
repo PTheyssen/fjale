@@ -19,62 +19,75 @@ export class GameBoardComponent {
   wordList: Array<string> = [];
   currentLetter: number = 0;
   currentWord: number = 0;
-  gameBoard: Array<Array<string>> = [
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-    ['', '', '', '', ''],
-  ];
-  outcomeBoard: Array<Array<LetterOutcome>> = [
-    [
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-    ],
-    [
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-    ],
-    [
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-    ],
-    [
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-    ],
-    [
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-      LetterOutcome.bottom,
-    ],
-  ];
+  gameBoard: Array<Array<string>> = [];
+  outcomeBoard: Array<Array<LetterOutcome>> = [];
 
   async ngOnInit() {
+    this.reset();
     await fetch('assets/fjale.txt')
       .then((response) => response.text())
       .then((text) => (this.wordList = text.split('\n')));
     this.solutionWord =
       this.wordList[Math.floor(Math.random() * this.wordList.length)];
-    console.log('Solution word: ' + this.solutionWord);
-    console.log(
-      'Parsed sol word: ' + this.parseSolutionWord(this.solutionWord)
-    );
   }
+
+  async reset() {
+    this.gameIsSolved = false;
+    this.gameFinished = false;
+    await fetch('assets/fjale.txt')
+      .then((response) => response.text())
+      .then((text) => (this.wordList = text.split('\n')));
+    this.solutionWord =
+      this.wordList[Math.floor(Math.random() * this.wordList.length)];    
+    this.wordList = [];
+    this.currentLetter = 0;
+    this.currentWord = 0;
+    this.gameBoard = [
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+    ];
+    this.outcomeBoard = [
+      [
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+      ],
+      [
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+      ],
+      [
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+      ],
+      [
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+      ],
+      [
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+        LetterOutcome.bottom,
+      ],
+    ];
+  }
+
 
   onKeyClick(key: string) {
     if (!this.gameFinished) {
@@ -144,7 +157,8 @@ export class GameBoardComponent {
     if (this.gameIsSolved) {
       alert("You won! :)")
     }
-    alert("You lost! :(");
+    alert(
+      `You lost! :( \nThe correct word:: ${this.solutionWord}`);
   }
 
   parseSolutionWord(word: string): Array<string> {
