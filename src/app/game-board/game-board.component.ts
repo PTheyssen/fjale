@@ -104,19 +104,19 @@ export class GameBoardComponent {
         this.outcomeBoard[this.currentWord] = wordOutcome;
         if (this.isOutcomeCorrect(wordOutcome)) {
           this.gameIsSolved = true;
-          this.gameFinished = true;
+            this.gameFinished = true;
+            this.finishGame();            
           return;
         }
         if (this.currentWord >= 4) {
           this.gameFinished = true;
+            this.finishGame();  
           return;
         }
         this.currentWord++;
         this.currentLetter = 0;
       }
-    } else {
-      this.finishGame();
-    }
+    } 
   }
 
   checkWord(solutionWord: string, word: Array<string>) {
@@ -153,12 +153,14 @@ export class GameBoardComponent {
   }
 
   finishGame() {
-    this.gameFinished = true;
-    if (this.gameIsSolved) {
-      alert("You won! :)")
-    }
-    alert(
-      `You lost! :( \nThe correct word:: ${this.solutionWord}`);
+      this.gameFinished = true;
+      setTimeout(() => {
+          if (this.gameIsSolved) {
+              alert("You won! :)")
+          }
+          alert(
+              `You lost! \nThe correct word: ${this.solutionWord}`);
+      }, 100);
   }
 
   parseSolutionWord(word: string): Array<string> {
