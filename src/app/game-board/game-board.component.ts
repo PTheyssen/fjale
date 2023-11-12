@@ -21,6 +21,7 @@ export class GameBoardComponent {
   currentWord: number = 0;
   gameBoard: Array<Array<string>> = [];
   outcomeBoard: Array<Array<LetterOutcome>> = [];
+  letterIsDisabled: Map<string, boolean> = new Map<string, boolean>();
 
   async ngOnInit() {
     this.reset();
@@ -38,7 +39,7 @@ export class GameBoardComponent {
       .then((response) => response.text())
       .then((text) => (this.wordList = text.split('\n')));
     this.solutionWord =
-      this.wordList[Math.floor(Math.random() * this.wordList.length)];    
+      this.wordList[Math.floor(Math.random() * this.wordList.length)];
     this.wordList = [];
     this.currentLetter = 0;
     this.currentWord = 0;
@@ -86,6 +87,42 @@ export class GameBoardComponent {
         LetterOutcome.bottom,
       ],
     ];
+    this.letterIsDisabled.set('A', false);
+    this.letterIsDisabled.set('B', false);
+    this.letterIsDisabled.set('C', false);
+    this.letterIsDisabled.set('Ç', false);
+    this.letterIsDisabled.set('D', false);
+    this.letterIsDisabled.set('DH', false);
+    this.letterIsDisabled.set('E', false);
+    this.letterIsDisabled.set('Ë', false);
+    this.letterIsDisabled.set('F', false);
+    this.letterIsDisabled.set('G', false);
+    this.letterIsDisabled.set('GJ', false);
+    this.letterIsDisabled.set('H', false);
+    this.letterIsDisabled.set('I', false);
+    this.letterIsDisabled.set('J', false);
+    this.letterIsDisabled.set('K', false);
+    this.letterIsDisabled.set('L', false);
+    this.letterIsDisabled.set('LL', false);
+    this.letterIsDisabled.set('M', false);
+    this.letterIsDisabled.set('N', false);
+    this.letterIsDisabled.set('NJ', false);
+    this.letterIsDisabled.set('O', false);
+    this.letterIsDisabled.set('P', false);
+    this.letterIsDisabled.set('Q', false);
+    this.letterIsDisabled.set('R', false);
+    this.letterIsDisabled.set('RR', false);
+    this.letterIsDisabled.set('S', false);
+    this.letterIsDisabled.set('SH', false);
+    this.letterIsDisabled.set('T', false);
+    this.letterIsDisabled.set('TH', false);
+    this.letterIsDisabled.set('U', false);
+    this.letterIsDisabled.set('V', false);
+    this.letterIsDisabled.set('X', false);
+    this.letterIsDisabled.set('XH', false);
+    this.letterIsDisabled.set('Y', false);
+    this.letterIsDisabled.set('Z', false);
+    this.letterIsDisabled.set('ZH', false);
   }
 
 
@@ -104,19 +141,19 @@ export class GameBoardComponent {
         this.outcomeBoard[this.currentWord] = wordOutcome;
         if (this.isOutcomeCorrect(wordOutcome)) {
           this.gameIsSolved = true;
-            this.gameFinished = true;
-            this.finishGame();            
+          this.gameFinished = true;
+          this.finishGame();
           return;
         }
         if (this.currentWord >= 4) {
           this.gameFinished = true;
-            this.finishGame();  
+          this.finishGame();
           return;
         }
         this.currentWord++;
         this.currentLetter = 0;
       }
-    } 
+    }
   }
 
   checkWord(solutionWord: string, word: Array<string>) {
@@ -128,6 +165,8 @@ export class GameBoardComponent {
       } else if (parsedSolWord.includes(word[i])) {
         outcome.push(LetterOutcome.wrongPosition);
       } else {
+        console.log(word[i]);
+        this.letterIsDisabled.set(word[i].toUpperCase(), true);
         outcome.push(LetterOutcome.wrong);
       }
     }
@@ -153,14 +192,15 @@ export class GameBoardComponent {
   }
 
   finishGame() {
-      this.gameFinished = true;
-      setTimeout(() => {
-          if (this.gameIsSolved) {
-              alert("You won! :)")
-          }
-          alert(
-              `You lost! \nThe correct word: ${this.solutionWord}`);
-      }, 100);
+    this.gameFinished = true;
+    setTimeout(() => {
+      if (this.gameIsSolved) {
+        alert("You won! :)")
+      } else {
+      alert(
+        `You lost! \nThe correct word: ${this.solutionWord}`);
+      }
+    }, 100);
   }
 
   parseSolutionWord(word: string): Array<string> {
