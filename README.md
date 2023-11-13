@@ -12,8 +12,9 @@ I want to add fjale to my personal website for this:
 -  disable file name hashing 
 
 
+
 ``` shell
-ng build --output-hashing none
+ng build --output-hashing none --base-href /projects/fjale-app/
 ```
 
 
