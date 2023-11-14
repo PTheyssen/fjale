@@ -3,3 +3,10 @@
 Simple wordle clone for the Albanian language.
 
 - list of words sourced from [dict.cc](https://desq.dict.cc/)
+
+
+## build for github pages
+
+Trigger deployment by pushing change to **gh-pages** branch
+
+
