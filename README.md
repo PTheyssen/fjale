@@ -9,4 +9,6 @@ Simple wordle clone for the Albanian language.
 
 Trigger deployment by pushing change to **gh-pages** branch
 
+Content of /docs folder is served to **ptheyssen.github.io/fjale**
+
 
