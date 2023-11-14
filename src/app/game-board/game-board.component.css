@@ -80,17 +80,23 @@
   font-size: 18px;
 }
 
-.keyboard {
-  display: grid;
-  grid-template-columns: repeat(10, 0fr);
-  gap: 8px;
-}
+
 
 .keyboard-wrapper {
   display: flex;
 }
 
-button {
+.keyboard {
+    flex: 0 0 65%;
+    display: grid;
+    grid-template-columns: repeat(10, 0fr);
+    gap: 8px;
+}
+
+.delete-button {
+}
+
+.keyboard-button {
   width: 50px;
   height: 50px;
   padding: 10px;
@@ -100,6 +106,12 @@ button {
   background-color: #f0f0f0;
   border: 2px solid #ccc;
   cursor: pointer;
+}
+
+.restart-button {
+    margin: auto;
+    padding: 10px;
+    font-size: 24px;
 }
 
 button:hover {

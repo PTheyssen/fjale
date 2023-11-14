@@ -1,16 +1,15 @@
 <div id="page-wrap">
   <h1>Welcome to Fjalë!</h1>
+  <h4>Try to find the correct Albanian word.</h4>
+  <h5>Whats makes this version special? A native speaker hand-selected the word list!</h5>
 
   <div class="board">
     <div class="wrapper">
       <div class="word-1">
         <div *ngFor="let key of gameBoard[0]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[0][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -18,12 +17,9 @@
 
       <div class="word-2">
         <div *ngFor="let key of gameBoard[1]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[1][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -31,12 +27,9 @@
 
       <div class="word-3">
         <div *ngFor="let key of gameBoard[2]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[2][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -44,12 +37,9 @@
 
       <div class="word-4">
         <div *ngFor="let key of gameBoard[3]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[3][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -57,12 +47,9 @@
 
       <div class="word-5">
         <div *ngFor="let key of gameBoard[4]; index as i" class="last-key">
-          <div
-            [ngStyle]="{
+          <div [ngStyle]="{
               'background-color': getOutcomeColor(outcomeBoard[4][i])
-            }"
-            class="key"
-          >
+            }" class="key">
             {{ key }}
           </div>
         </div>
@@ -70,62 +57,56 @@
     </div>
     <br />
 
-    <div class="keyboard-warpper">
-      <button
-        style="
-          float: right;
-          width: 150px;
-          height: 50px;
-          padding: 10px;
-          font-size: 24px;
-          border-radius: 8px;
-          background-color: #f0f0f0;
-          border: 2px solid #ccc;
-          cursor: pointer;
-        "
-        (click)="deletePrevious()"
-      >
-        ⌫
-      </button>
+    <div class="keyboard-wrapper">
+
       <div class="keyboard">
-        <button (click)="onKeyClick('A')">A</button>
-        <button (click)="onKeyClick('B')">B</button>
-        <button (click)="onKeyClick('C')">C</button>
-        <button (click)="onKeyClick('Ç')">Ç</button>
-        <button (click)="onKeyClick('D')">D</button>
-        <button (click)="onKeyClick('DH')">DH</button>
-        <button (click)="onKeyClick('E')">E</button>
-        <button (click)="onKeyClick('Ë')">Ë</button>
-        <button (click)="onKeyClick('F')">F</button>
-        <button (click)="onKeyClick('G')">G</button>
-        <button (click)="onKeyClick('GJ')">GJ</button>
-        <button (click)="onKeyClick('H')">H</button>
-        <button (click)="onKeyClick('I')">I</button>
-        <button (click)="onKeyClick('J')">J</button>
-        <button (click)="onKeyClick('K')">K</button>
-        <button (click)="onKeyClick('L')">L</button>
-        <button (click)="onKeyClick('LL')">LL</button>
-        <button (click)="onKeyClick('M')">M</button>
-        <button (click)="onKeyClick('N')">N</button>
-        <button (click)="onKeyClick('NJ')">NJ</button>
-        <button (click)="onKeyClick('O')">O</button>
-        <button (click)="onKeyClick('P')">P</button>
-        <button (click)="onKeyClick('Q')">Q</button>
-        <button (click)="onKeyClick('R')">R</button>
-        <button (click)="onKeyClick('RR')">RR</button>
-        <button (click)="onKeyClick('S')">S</button>
-        <button (click)="onKeyClick('SH')">SH</button>
-        <button (click)="onKeyClick('T')">T</button>
-        <button (click)="onKeyClick('TH')">TH</button>
-        <button (click)="onKeyClick('U')">U</button>
-        <button (click)="onKeyClick('V')">V</button>
-        <button (click)="onKeyClick('X')">X</button>
-        <button (click)="onKeyClick('XH')">XH</button>
-        <button (click)="onKeyClick('Y')">Y</button>
-        <button (click)="onKeyClick('Z')">Z</button>
-        <button (click)="onKeyClick('ZH')">ZH</button>
+        <button (click)="onKeyClick('A')" [disabled]="this.letterIsDisabled.get('A')">A</button>
+        <button (click)="onKeyClick('B')" [disabled]="this.letterIsDisabled.get('B')">B</button>
+        <button (click)="onKeyClick('C')" [disabled]="this.letterIsDisabled.get('C')">C</button>
+        <button (click)="onKeyClick('Ç')" [disabled]="this.letterIsDisabled.get('Ç')">Ç</button>
+        <button (click)="onKeyClick('D')" [disabled]="this.letterIsDisabled.get('D')">D</button>
+        <button (click)="onKeyClick('DH')" [disabled]="this.letterIsDisabled.get('DH')">DH</button>
+        <button (click)="onKeyClick('E')" [disabled]="this.letterIsDisabled.get('E')">E</button>
+        <button (click)="onKeyClick('Ë')" [disabled]="this.letterIsDisabled.get('Ë')">Ë</button>
+        <button (click)="onKeyClick('F')" [disabled]="this.letterIsDisabled.get('F')">F</button>
+        <button (click)="onKeyClick('G')" [disabled]="this.letterIsDisabled.get('G')">G</button>
+        <button (click)="onKeyClick('GJ')" [disabled]="this.letterIsDisabled.get('GJ')">GJ</button>
+        <button (click)="onKeyClick('H')" [disabled]="this.letterIsDisabled.get('H')">H</button>
+        <button (click)="onKeyClick('I')" [disabled]="this.letterIsDisabled.get('I')">I</button>
+        <button (click)="onKeyClick('J')" [disabled]="this.letterIsDisabled.get('J')">J</button>
+        <button (click)="onKeyClick('K')" [disabled]="this.letterIsDisabled.get('K')">K</button>
+        <button (click)="onKeyClick('L')" [disabled]="this.letterIsDisabled.get('L')">L</button>
+        <button (click)="onKeyClick('LL')" [disabled]="this.letterIsDisabled.get('LL')">LL</button>
+        <button (click)="onKeyClick('M')" [disabled]="this.letterIsDisabled.get('M')">M</button>
+        <button (click)="onKeyClick('N')" [disabled]="this.letterIsDisabled.get('N')">N</button>
+        <button (click)="onKeyClick('NJ')" [disabled]="this.letterIsDisabled.get('NJ')">NJ</button>
+        <button (click)="onKeyClick('O')" [disabled]="this.letterIsDisabled.get('O')">O</button>
+        <button (click)="onKeyClick('P')" [disabled]="this.letterIsDisabled.get('P')">P</button>
+        <button (click)="onKeyClick('Q')" [disabled]="this.letterIsDisabled.get('Q')">Q</button>
+        <button (click)="onKeyClick('R')" [disabled]="this.letterIsDisabled.get('R')">R</button>
+        <button (click)="onKeyClick('RR')" [disabled]="this.letterIsDisabled.get('RR')">RR</button>
+        <button (click)="onKeyClick('S')" [disabled]="this.letterIsDisabled.get('S')">S</button>
+        <button (click)="onKeyClick('SH')" [disabled]="this.letterIsDisabled.get('SH')">SH</button>
+        <button (click)="onKeyClick('T')" [disabled]="this.letterIsDisabled.get('T')">T</button>
+        <button (click)="onKeyClick('TH')" [disabled]="this.letterIsDisabled.get('TH')">TH</button>
+        <button (click)="onKeyClick('U')" [disabled]="this.letterIsDisabled.get('U')">U</button>
+        <button (click)="onKeyClick('V')" [disabled]="this.letterIsDisabled.get('V')">V</button>
+        <button (click)="onKeyClick('X')" [disabled]="this.letterIsDisabled.get('X')">X</button>
+        <button (click)="onKeyClick('XH')" [disabled]="this.letterIsDisabled.get('XH')">XH</button>
+        <button (click)="onKeyClick('Y')" [disabled]="this.letterIsDisabled.get('Y')">Y</button>
+        <button (click)="onKeyClick('Z')" [disabled]="this.letterIsDisabled.get('Z')">Z</button>
+        <button (click)="onKeyClick('ZH')" [disabled]="this.letterIsDisabled.get('ZH')">ZH</button>                                                
         <!-- Add more buttons as needed -->
       </div>
+      <div class="delete-button">
+        <button (click)="deletePrevious()">
+          ⌫
+        </button>
+      </div>
     </div>
+
+  </div>
+  <div *ngIf="gameFinished">
+    <button class="restart-button" (click)="reset()">Restart Game</button>
   </div>
 </div>

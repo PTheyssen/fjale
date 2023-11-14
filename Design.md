@@ -13,3 +13,4 @@
   - it is inside the correct word at the right posiion (green)
   - if it is inside the correct word at a wrong position (yellow)
 - random word will be choosen from a list of word sourced from dict.cc
+- incorrect letters will be greyed out
